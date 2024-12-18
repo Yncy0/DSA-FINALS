@@ -21,48 +21,94 @@ public class Main {
         System.out.println("[B]: SORT");
         System.out.println("[X]: CANCEL");
         System.out.print("INPUT HERE >> ");
+
         String choice = input.nextLine().toLowerCase();
 
         while (true) {
             if (choice.equals("a")) {
                 searchMenu(input, arr);
             } else if (choice.equals("b")) {
-                sortMenu();
+                sortMenu(input, arr);
             } else if (choice.equals("x")) {
                 return;
+            } else {
+                System.out.println("That is not the right input :(, please prefer on the references");
+                break;
             }
-//            } else {
-//                System.out.println("That is not the right input :(, please prefer on the references");
-//                break;
-//            }
         }
     }
 
     private static void searchMenu(Scanner input, int arr[]) {
         System.out.println("Please choose a SEARCHING ALGORITHM");
         System.out.println("[A]: LINEAR SEARCH");
-        System.out.println("[Y]: BACK");
         System.out.println("[X]: CANCEL");
         System.out.print("INPUT HERE >> ");
+
         String choice = input.nextLine().toLowerCase();
 
         while (true) {
             if (choice.equals("a")) {
-                System.out.println("HERE ARE THE ARRAYS");
-                System.out.println(Arrays.toString(arr));
-                System.out.println("Please choose a target number to search");
+                arrayDisplaySelector(arr);
+
                 int target = input.nextInt();
+                input.nextLine();
+
                 linearSearch(arr, target);
+                return;
+            } else if (choice.equals("x")) {
+                selectionMenu(input, arr);
+            } else {
+                System.out.println("That is not the right input :(, please prefer on the references");
+                break;
             }
         }
     }
 
-    private static void sortMenu() {
+    private static void sortMenu(Scanner input, int arr[]) {
         System.out.println("Please choose a SORTING ALGORITHM");
+        System.out.println("[A]: SELECTION SORT");
+        System.out.println("[B]: BUBBLE SORT");
+        System.out.println("[X]: CANCEL");
+        System.out.print("INPUT HERE >> ");
+
+        String choice = input.nextLine().toLowerCase();
+
+        while (true) {
+            if (choice.equals("a")) {
+                arrayDisplaySelector(arr);
+
+                int target = input.nextInt();
+                input.nextLine();
+
+                //TO-DO
+
+                return;
+            } else if (choice.equals("b")) {
+                arrayDisplaySelector(arr);
+
+                int target = input.nextInt();
+                input.nextLine();
+
+                //TO-DO
+
+                return;
+            } else if (choice.equals("x")) {
+                return;
+            } else {
+                System.out.println("That is not the right input :(, please prefer on the references");
+                break;
+            }
+        }
+    }
+
+    private static void arrayDisplaySelector(int arr[]) {
+        System.out.println("HERE ARE THE ARRAYS");
+        System.out.println(Arrays.toString(arr));
+        System.out.print("Please choose a target number to search >> ");
     }
 
     private static int linearSearch(int[] arr, int n) {
-        for (int i = 0; i < arr.length-1; i++) {
+        for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j <= i; j++) {
                 System.out.print(arr[j] + " ");
             }
