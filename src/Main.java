@@ -4,11 +4,12 @@ import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
+        //FOR TESTING PURPOSES
         int[] testArray = {51, 32, 43, 4, 5, 66, 87, 98, 39, 10};
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("DSA FINAL EXAM");
-
+        System.out.println("================================");
         while (true) {
             selectionMenu(scanner, testArray);
         }
@@ -48,7 +49,8 @@ public class Main {
 
         while (true) {
             if (choice.equals("a")) {
-                arrayDisplaySelector(arr);
+                arrayDisplay(arr);
+                System.out.print("Please choose a target number to search >> ");
 
                 int target = input.nextInt();
                 input.nextLine();
@@ -75,21 +77,13 @@ public class Main {
 
         while (true) {
             if (choice.equals("a")) {
-                arrayDisplaySelector(arr);
-
-                int target = input.nextInt();
-                input.nextLine();
-
-                //TO-DO
+                arrayDisplay(arr);
+                selectionSort(arr);
 
                 return;
             } else if (choice.equals("b")) {
-                arrayDisplaySelector(arr);
-
-                int target = input.nextInt();
-                input.nextLine();
-
-                //TO-DO
+                arrayDisplay(arr);
+                bubbleSort(arr);
 
                 return;
             } else if (choice.equals("x")) {
@@ -101,10 +95,9 @@ public class Main {
         }
     }
 
-    private static void arrayDisplaySelector(int arr[]) {
+    private static void arrayDisplay(int arr[]) {
         System.out.println("HERE ARE THE ARRAYS");
         System.out.println(Arrays.toString(arr));
-        System.out.print("Please choose a target number to search >> ");
     }
 
     private static int linearSearch(int[] arr, int n) {
@@ -123,4 +116,42 @@ public class Main {
         System.out.println("The target is not in an array");
         return -1;
     }
+
+    private static void bubbleSort(int[] arr) {
+        boolean isSwapped = true;
+
+        while (isSwapped) {
+            isSwapped = false;
+            for (int i = 0; i < arr.length-1; i++) {
+                if (arr[i] > arr[i + 1]) {
+                    isSwapped = true;
+                    int temp = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = temp;
+                }
+                System.out.println("Sorting: " + Arrays.toString(arr));
+            }
+        }
+        System.out.println("The Items has been sorted! " + Arrays.toString(arr));
+    }
+
+    private static void selectionSort(int[] arr) {
+        for (int i = 0; i < arr.length-1; i++) {
+            int min = arr[i];
+            int minIndex = i;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < min) {
+                    min = arr[j];
+                    minIndex = j;
+                }
+            }
+            int temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
+
+            System.out.println("Sorting: " + Arrays.toString(arr));
+        }
+        System.out.println("The Items has been sorted! " + Arrays.toString(arr));
+    }
+
 }
