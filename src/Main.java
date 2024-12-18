@@ -1,26 +1,28 @@
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
-import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
-        //FOR TESTING PURPOSES
-        int[] testArray = {51, 32, 43, 4, 5, 66, 87, 98, 39, 10};
         Scanner scanner = new Scanner(System.in);
 
+        //FOR TESTING PURPOSES
+        int[] testArray = {51, 32, 43, 4, 5, 66, 87, 98, 39, 10};
+        int[] numberArray = new int[10];
+
+
         System.out.println("DSA FINAL EXAM");
-        System.out.println("================================");
         while (true) {
-            selectionMenu(scanner, testArray);
+            selectionMenu(scanner, numberArray);
         }
 
     }
 
     private static void selectionMenu(Scanner input, int arr[]) {
+        System.out.println("================================");
         System.out.println("What do you want to do?: ");
         System.out.println("[A]: SEARCH");
         System.out.println("[B]: SORT");
-        System.out.println("[X]: CANCEL");
         System.out.print("INPUT HERE >> ");
 
         String choice = input.nextLine().toLowerCase();
@@ -30,8 +32,6 @@ public class Main {
                 searchMenu(input, arr);
             } else if (choice.equals("b")) {
                 sortMenu(input, arr);
-            } else if (choice.equals("x")) {
-                return;
             } else {
                 System.out.println("That is not the right input :(, please prefer on the references");
                 break;
@@ -40,6 +40,7 @@ public class Main {
     }
 
     private static void searchMenu(Scanner input, int arr[]) {
+        System.out.println("================================");
         System.out.println("Please choose a SEARCHING ALGORITHM");
         System.out.println("[A]: LINEAR SEARCH");
         System.out.println("[X]: CANCEL");
@@ -49,7 +50,7 @@ public class Main {
 
         while (true) {
             if (choice.equals("a")) {
-                arrayDisplay(arr);
+                arrayRNG(arr);
                 System.out.print("Please choose a target number to search >> ");
 
                 int target = input.nextInt();
@@ -67,6 +68,7 @@ public class Main {
     }
 
     private static void sortMenu(Scanner input, int arr[]) {
+        System.out.println("================================");
         System.out.println("Please choose a SORTING ALGORITHM");
         System.out.println("[A]: SELECTION SORT");
         System.out.println("[B]: BUBBLE SORT");
@@ -77,27 +79,22 @@ public class Main {
 
         while (true) {
             if (choice.equals("a")) {
-                arrayDisplay(arr);
+                arrayRNG(arr);
                 selectionSort(arr);
 
                 return;
             } else if (choice.equals("b")) {
-                arrayDisplay(arr);
+                arrayRNG(arr);
                 bubbleSort(arr);
 
                 return;
             } else if (choice.equals("x")) {
-                return;
+                selectionMenu(input, arr);
             } else {
                 System.out.println("That is not the right input :(, please prefer on the references");
                 break;
             }
         }
-    }
-
-    private static void arrayDisplay(int arr[]) {
-        System.out.println("HERE ARE THE ARRAYS");
-        System.out.println(Arrays.toString(arr));
     }
 
     private static int linearSearch(int[] arr, int n) {
@@ -132,6 +129,7 @@ public class Main {
                 System.out.println("Sorting: " + Arrays.toString(arr));
             }
         }
+        System.out.println("================================");
         System.out.println("The Items has been sorted! " + Arrays.toString(arr));
     }
 
@@ -151,7 +149,19 @@ public class Main {
 
             System.out.println("Sorting: " + Arrays.toString(arr));
         }
+        System.out.println("================================");
         System.out.println("The Items has been sorted! " + Arrays.toString(arr));
+    }
+
+    private static void arrayRNG(int arr[]) {
+        Random r = new Random();
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = r.nextInt(100000);
+        }
+
+        System.out.println("HERE ARE THE RANDOM GENERATED ARRAYS");
+        System.out.println(Arrays.toString(arr));
+        System.out.println("================================");
     }
 
 }
